@@ -1,0 +1,20 @@
+.max {
+    border: 0px;
+    margin: 0px;
+    background-color: lightgray;
+}
+
+
+
+.top {
+    height: 100px;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.title {
+    font-size: xx-large;
+}

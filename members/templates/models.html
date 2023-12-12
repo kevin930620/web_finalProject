@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="/static/css/test.css">
+</head>
+
+<body>
+    <div class="max">
+        <div class="top">
+            <div>IMG</div>
+            <div class="title">Computer</div>
+            <div>searchbox</div>
+        </div>
+        <div class=""></div>
+        <ul>
+            {% for x in myComputer %}
+            <li >
+                <a href="imformation/{{x.id}}">{{x.ComputerName}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a href="/FinalProject/members/templates/main.html">main</a>
+
+    </div>
+
+</body>
+
+</html>
