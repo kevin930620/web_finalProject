@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template import loader
 from django.contrib import auth
+from django.shortcuts import render
 
 from Form.form import LoginForm
 
@@ -20,12 +21,12 @@ def login(request):
     elif request.method == "POST":
         post_form = LoginForm(request.POST)
         if post_form.is_valid():
-            username = post_form.changed_data['username']
-            password = post_form.changed_data['password']
+            username = post_form.cleaned_data['username']
+            password = post_form.cleaned_data['password']
             user = authenticate(username = username,password = password)
             if user is not None:
                 auth.login(request,user)
-                messages = f'{username} Login'
+                
                 main_html = loader.get_template('main.html')
                 context = {'user': request.user,
                            'messages':'login ok'}
