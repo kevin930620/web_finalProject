@@ -1,10 +1,10 @@
 from django.urls import path
+from django.views.generic import RedirectView
 from . import views
 
 urlpatterns =[
-#    path('',views.members,name='members'),
-   path('members/main/',views.main,name='main'),
+    path('',RedirectView.as_view(url='/members/',permanent = True)),
+    path('members/main/',views.main,name='main'),
     path('members/',views.members,name='members'),
-    # path('members/main',views.main,name='main'),
     path('members/imformation/<int:id>',views.imformation,name='imformation'),
 ]
