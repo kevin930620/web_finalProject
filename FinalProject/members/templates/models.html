@@ -9,25 +9,39 @@
         <div class="top">
             <div>IMG</div>
             <div class="title">Computer</div>
-            <div>searchbox</div>
+            <div>
+                <form action="." method="search">
+                    <input type="text">
+                    <input type="submit" value="search">
+                </form>
+            </div>
         </div>
-        <div class=""></div>
-        <ul>
-            {% for x in myComputer %}
-            <li>
-                <a href="imformation/{{x.id}}">{{x.ComputerName}}</a>
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="middle">
+            
+            <div class="page">
+                <ul>
+                    {% for x in myComputer %}
+                    <li>
+                        <a href="imformation/{{x.id}}">{{x.ComputerName}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
 
-        <a href="main/">main</a>
+                <a href="main/">main</a>
+
+            </div>
+            <div class="right">
+                <p>asdasd</p>
+            </div>
+
+        </div>
 
     </div>
 
     <!---->
     <hr>
 
-    
+
 
 </body>
 

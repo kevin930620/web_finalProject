@@ -32,9 +32,16 @@ def login(request):
                            'messages':'login ok'}
                 return HttpResponse(main_html.render(context,request))
             else:
-                messages = 'Login failed'
+                
+                print('Login failed')
+                context = {
+                    'title':'Login Fail',
+                    'post_form':post_form,
+                }
+                return HttpResponse(template.render(context,request))
         else:
             print('Login ERROR')
+            return HttpResponse(template.render())
     else:
         print('ERROR')
     

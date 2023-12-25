@@ -18,3 +18,21 @@
 .title {
     font-size: xx-large;
 }
+
+.middle {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.page {
+    margin-right: 20%;
+    height: 100px;
+    background-color: aquamarine;
+}
+
+.right {
+    width: 20%;
+    height: 100px;
+    background-color: navy;
+}
