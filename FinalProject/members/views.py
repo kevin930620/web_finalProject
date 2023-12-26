@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
-from .models import Computer
+from .models import Computer,CPUType
 
 def members(request):
     myComputer = Computer.objects.all().values()
@@ -22,3 +22,14 @@ def imformation(request,id):
 def main(request):
     template = loader.get_template('main.html')
     return HttpResponse(template.render())
+
+
+def filter(request):
+    myComputer = Computer.objects.all().values()
+    theCPUType = CPUType.objects.all().values()
+    template = loader.get_template('filter.html')
+    context={
+        'myComputer':myComputer,
+        'theCpuType':theCPUType,
+    }
+    return HttpResponse(template.render(context,request))

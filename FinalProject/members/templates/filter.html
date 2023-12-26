@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        {% for x in theCpuType %}
+        <input type="checkbox" id="x.id" value="{{ x.id }}">
+        <label for="x.id">{{ x.name }}</label>
+        {% endfor %}
+    </form>
+
+
+    <ul>
+        {% for y in myComputer %}
+        <li>
+            <a href="imformation/{{y.id}}">{{y.ComputerName}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
