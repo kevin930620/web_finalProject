@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class BrandType(models.Model):
     name = models.CharField(max_length=255)
     def __str__(self):
@@ -32,11 +31,10 @@ class Test(models.Model):
 class Computer(models.Model):
     ComputerName = models.CharField(max_length=255)
     Brand = models.ForeignKey(BrandType,on_delete=models.CASCADE)
-    CPU = models.CharField(max_length=255,null=True)
-    GPU = models.CharField(max_length=255,null=True)
+    CPU = models.ForeignKey(CPUType,null=True,on_delete=models.CASCADE)
+    GPUBrands = models.ForeignKey(GPUBrands,null=True,on_delete=models.CASCADE)
     PublicDate = models.DateField(null=True)
     Ram = models.IntegerField(null=True)
-    RamType = models.IntegerField(null=True)
     Size = models.FloatField(null=True)
     Price = models.IntegerField(null=True)
     
