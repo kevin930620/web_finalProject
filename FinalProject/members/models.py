@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class BrandType(models.Model):
@@ -38,4 +39,14 @@ class Computer(models.Model):
     Size = models.FloatField(null=True)
     Price = models.IntegerField(null=True)
     
+    def __str__(self):
+        return f'{self.ComputerName}'
+
+class wishlist(models.Model):
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
+    computer = models.ForeignKey(Computer,on_delete = models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user.username}  {self.computer.ComputerName}'
+
 # Create your models here.
