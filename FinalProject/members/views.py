@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.template import loader
 from django.http import HttpResponse
 from .models import Computer,CPUType,wishlist
@@ -58,22 +58,54 @@ def Item_List(request):
 
 
 
-@login_required
-def wish(request):
-    ''' to show my booking list '''
-    wishlist_computer = wishlist.objects.filter(user=request.user)
-    print (f'All bookings by {request.user}:')
-    for computer in wishlist_computer:
-        print (computer)
-    # member = getMember(request)    
-    # print ('member.firstname', member.firstname)
-    context = {
-            #  'member': member,
-               'wish': wishlist_computer}
-    return render(request, 'hope.html', context)
+# @login_required
+# def wish(request):
+#     ''' to show my booking list '''
+#     wishlist_computer = wishlist.objects.filter(user=request.user)
+#     print (f'All bookings by {request.user}:')
+#     for computer in wishlist_computer:
+#         print (computer)
+#     # member = getMember(request)    
+#     # print ('member.firstname', member.firstname)
+#     context = {
+#             #  'member': member,
+#                'wish': wishlist_computer}
+#     return render(request, 'hope.html', context)
 
 
 # def getMember(request):
 #     print(request.user)
     
+@login_required
+def view_wishlist(request):
+    wishlist_items = wishlist.objects.filter(user=request.user)
+
+    print(request.user)
+    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
+
+def add_to_wishlist(request):
+    if request.method == 'POST':
+        item_name = request.POST.get('item_name')
+        description = request.POST.get('description')
+        wishlist.objects.create(user=request.user, item_name=item_name, description=description)
+        return redirect('view_wishlist')
+    return render(request, 'add_to_wishlist.html')
+
+# def delete_from_wishlist(request, wishlist_id):
+#     item = wishlist.objects.get(id=wishlist_id)
+#     if request.method == 'POST':
+#         item.delete()
+#         return redirect('view_wishlist')
+#     return render(request, 'delete_from_wishlist.html', {'item': item})
         
+
+
+
+
+def TEST(request):
+    myComputer = Computer.objects.all().values()
+    template = loader.get_template('master.html')
+    context={
+        'myComputer':myComputer,
+    }
+    return HttpResponse(template.render(context,request))

@@ -1,4 +1,28 @@
-<!DOCTYPE html>
+
+
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+  My Tennis Club
+{% endblock %}
+
+
+{% block content %}
+
+    {% for x in myComputer %}
+        <section>
+            <h2>{{x.ComputerName}}</h2>
+            <!-- <img src="dell-xps-13.jpg" alt="Dell XPS 13"> -->
+            <p>{{x.ComputerName}}</p>
+            <p>{{x.ComputerName}}</p>
+            <p>{{x.ComputerName}}</p>
+            <a href="imformation/{{x.id}}">Laptop details</a>
+        </section>     
+                    
+    {% endfor %}
+
+  <!-- <!DOCTYPE html>  
 
 <head>
     <link rel="stylesheet" href="/static/css/test.css">
@@ -37,15 +61,16 @@
 
         </div>
         <div>
-            <a href="wish/">wish</a>
+            <a href="{% url 'view_wishlist' %}">wish</a>
         </div>
     </div>
 
-    <!---->
+   
     <hr>
 
 
 
 </body>
 
-</html>
+</html> -->
+{% endblock %}

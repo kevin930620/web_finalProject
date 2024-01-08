@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #6b6a6a;
+    color: #ffffff;
+    font-size: medium;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* 調整為垂直方向排列 */
+    justify-content: center; /* 垂直置中 */
+    align-items: center; /* 水平置中 */
+}
+
+#label {
+    margin-top: 1em; /* 上方邊距增加 */
+}
+
+#search-bar {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+}
+
+#search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 3px;
+}
+
+#search-bar button {
+    padding: 8px 15px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100px;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1em;
+    transition: width 0.5s; /* 加入過渡效果 */
+}
+
+#sidebar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 1em;
+    text-align: center;
+    border-bottom: 1px solid #555;
+    width: 100%;
+    box-sizing: border-box;
+    transition: padding 0.5s; /* 加入過渡效果 */
+}
+
+#sidebar:hover {
+    width: 200px; /* 滑鼠懸停時擴展寬度 */
+}
+
+#sidebar:hover a {
+    padding-left: 20px; /* 滑鼠懸停時調整連結內的內邊距 */
+}
+
+section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: auto;
+    margin-right: auto; /* 將左右邊距都設為 auto，使 section 居中 */
+}
+
+h2 {
+    color: #333;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #555;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    #search-bar {
+        position: static;
+        margin-top: 20px;
+        text-align: center;
+    }
+    #search-bar input, #search-bar button {
+        margin: 5px;
+    }
+
+    #sidebar {
+        display: none;
+    }
+
+    section {
+        margin-left: 0;
+    }
+}

@@ -8,5 +8,10 @@ urlpatterns =[
     path('members/',views.members,name='members'),
     path('members/imformation/<int:id>',views.imformation,name='imformation'),
     path('members/filter/',views.filter,name='filter'),
-    path('members/wish/',views.wish,name='wish'),
+
+    path('wish/',views.wishlist,name='view_wishlist'),
+    path('add_wish/',views.add_to_wishlist,name='add_to_wishlist'),
+    
+    path('homepage/',views.TEST,name='test'),
+    
 ]

@@ -48,7 +48,7 @@ def login(request):
     
 def logout(request):
     auth.logout(request)
-    main_html = loader.get_template('main.html')
+    main_html = loader.get_template('models.html')
     context={'user': request.user}
     return HttpResponse(main_html.render(context,request))
 

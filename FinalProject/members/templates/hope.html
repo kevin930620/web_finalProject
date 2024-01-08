@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-
-    <title>Document</title>
+    <title>Wishlist</title>
 </head>
 <body>
+    {% if request.user.is_authenticated  %}
+    <h1>My Wishlist</h1>
     <ul>
-        {% for computer in wish %}
-            <li>{{wish.user}}  {{ wish.computer }}</li>
+        {% for item in wishlist_items %}
+            <li>{{ item.item.name }} - {{ item.item.description }} <a href="{% url 'delete_from_wishlist' item.id %}">Delete</a></li>
+        {% endfor %}
     </ul>
-    
+    <a href="{% url 'add_to_wishlist' %}">Add Item</a>
+    {% else %}
+    <!-- <a href="{% url 'login' %}"></a> -->
 </body>
 </html>
