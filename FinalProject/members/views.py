@@ -15,6 +15,7 @@ def members(request):
     context = {
         'myComputer' : myComputer,
     }
+    print(context)
     return HttpResponse(template.render(context,request))
 
 def imformation(request,id):
@@ -41,7 +42,9 @@ def main(request):
 #     return HttpResponse(template.render(context,request))
 
 def filter_view(request):
-    if request.method == 'POST':
+    computer = Computer.objects.all()
+    form = FilterForm(request.GET)
+    if form.is_valid:
         form = FilterForm(request.POST)
         if form.is_valid():
             category_id = form.cleaned_data['Brand'].id
@@ -93,10 +96,25 @@ def Item_List(request):
     
 @login_required
 def view_wishlist(request):
-    wishlist_items = wishlist.objects.filter(user=request.user)
+    wish = wishlist.objects.filter(user=request.user)
+    print (f'All bookings by {request.user}:')
+    for b in wish:
+        print (b)
+    member = getMember(request)    
+    print ('member.firstname', member.firstname)
+    context = {'member': member,
+               'bookings': bookings}
+    return render(request, 'my_bookings.html', context)
 
-    print(request.user)
-    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
+def getMember(request):
+    print (request.user)
+    try:
+        member = Member.objects.get(user=request.user)
+        print (member)
+        return member
+    except:
+        print (f"The user {request.user} is not a member")
+        return render(request, 'booking_error.html', None)
 
 def add_to_wishlist(request):
     if request.method == 'POST':
@@ -136,6 +154,7 @@ def login(request):
             'user': request.user,
             'post_form':post_form,
         }
+        
         return HttpResponse(template.render(context,request))
 
     elif request.method == "POST":
@@ -147,9 +166,11 @@ def login(request):
             if user is not None:
                 auth.login(request,user)
                 
-                main_html = loader.get_template('main.html')
+                main_html = loader.get_template('models.html')
                 context = {'user': request.user,
-                           'messages':'login ok'}
+                        #    'messages':'login ok'
+                           }
+                print('asd')
                 return HttpResponse(main_html.render(context,request))
             else:
                 
@@ -158,6 +179,7 @@ def login(request):
                     'title':'Login Fail',
                     'post_form':post_form,
                 }
+                print('kcxjhcv')
                 return HttpResponse(template.render(context,request))
         else:
             print('Login ERROR')
@@ -169,4 +191,6 @@ def logout(request):
     auth.logout(request)
     main_html = loader.get_template('models.html')
     context={'user': request.user}
+    print('zkxjc')
     return HttpResponse(main_html.render(context,request))
+    

@@ -6,7 +6,7 @@ class LoginForm(forms.Form):
 
 # for filter
 class FilterForm(forms.Form):
-    cputype = forms.ModelMultipleChoiceField(
+    cputype = forms.ModelChoiceField(
         queryset=CPUType.objects.all(),
         widget= forms.CheckboxSelectMultiple
     )

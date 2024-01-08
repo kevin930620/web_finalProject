@@ -40,7 +40,7 @@ class Computer(models.Model):
     Price = models.IntegerField(null=True)
     
     def __str__(self):
-        return f'{self.ComputerName}'
+        return f'{self.ComputerName}{self.CPU}'
 
 class wishlist(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
