@@ -8,7 +8,8 @@
     <h1>My Wishlist</h1>
     <ul>
         {% for item in wishlist_items %}
-            <li>{{ item.item.name }} - {{ item.item.description }} <a href="{% url 'delete_from_wishlist' item.id %}">Delete</a></li>
+            <li>{{ item.item.name }} - {{ item.item.description }} 
+            <!-- <a href="{% url 'delete_from_wishlist' item.id %}">Delete</a></li> -->
         {% endfor %}
     </ul>
     <a href="{% url 'add_to_wishlist' %}">Add Item</a>

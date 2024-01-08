@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Computer,Test,BrandType,GPUBrands,GPUType,CPUType
+from .models import Computer,Test,BrandType,GPUBrands,GPUType,CPUType,wishlist
 
 class ComputerAdmin(admin.ModelAdmin):
     list_display = ("ComputerName","Brand")
@@ -14,5 +14,6 @@ admin.site.register(BrandType)
 admin.site.register(GPUType)
 admin.site.register(GPUBrands)
 admin.site.register(CPUType)
+admin.site.register(wishlist)
 
 # Register your models here.

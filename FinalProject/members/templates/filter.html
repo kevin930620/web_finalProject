@@ -15,10 +15,13 @@
         {% endfor %}
     </form> -->
 <!--  -->
-    <form method="GET" action="">
-        {{ filter_form.as_p }}
-        <button type="submit">Filter</button>
+    <!-- your_template.html -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">篩選</button>
     </form>
+
 
     <ul>
         {% for x in computer %}

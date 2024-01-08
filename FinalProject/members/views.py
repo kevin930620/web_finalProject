@@ -4,7 +4,10 @@ from django.http import HttpResponse
 from .models import Computer,CPUType,wishlist
 from django.contrib.auth.decorators import login_required
 
-from .form import FilterForm
+from django.contrib import auth
+from django.contrib.auth import authenticate
+
+from .form import FilterForm,LoginForm
 
 def members(request):
     myComputer = Computer.objects.all().values()
@@ -37,6 +40,18 @@ def filter(request):
     }
     return HttpResponse(template.render(context,request))
 
+# def filter_view(request):
+#     if request.method == 'POST':
+#         form = FilterForm(request.POST)
+#         if form.is_valid():
+#             category_id = form.cleaned_data['category'].id
+#             # 根據選擇的分類進行過濾
+#             items = Item.objects.filter(category_id=category_id)
+#             # 其他篩選邏輯...
+#     else:
+#         form = FilterForm()
+
+#     return render(request, 'your_template.html', {'form': form})
 
 def Item_List(request):
     # 
@@ -109,3 +124,49 @@ def TEST(request):
         'myComputer':myComputer,
     }
     return HttpResponse(template.render(context,request))
+
+
+
+def login(request):
+    template = loader.get_template('login.html')
+    messages = ''
+    if request.method == 'GET':
+        post_form = LoginForm()
+        context={
+            'user': request.user,
+            'post_form':post_form,
+        }
+        return HttpResponse(template.render(context,request))
+
+    elif request.method == "POST":
+        post_form = LoginForm(request.POST)
+        if post_form.is_valid():
+            username = post_form.cleaned_data['username']
+            password = post_form.cleaned_data['password']
+            user = authenticate(username = username,password = password)
+            if user is not None:
+                auth.login(request,user)
+                
+                main_html = loader.get_template('main.html')
+                context = {'user': request.user,
+                           'messages':'login ok'}
+                return HttpResponse(main_html.render(context,request))
+            else:
+                
+                print('Login failed')
+                context = {
+                    'title':'Login Fail',
+                    'post_form':post_form,
+                }
+                return HttpResponse(template.render(context,request))
+        else:
+            print('Login ERROR')
+            return HttpResponse(template.render())
+    else:
+        print('ERROR')
+    
+def logout(request):
+    auth.logout(request)
+    main_html = loader.get_template('models.html')
+    context={'user': request.user}
+    return HttpResponse(main_html.render(context,request))

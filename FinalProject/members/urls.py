@@ -13,5 +13,8 @@ urlpatterns =[
     path('add_wish/',views.add_to_wishlist,name='add_to_wishlist'),
     
     path('homepage/',views.TEST,name='test'),
+# 
+    path('login/',views.login,name='login'),
+    path('logout/',views.logout,name='logout'),
     
 ]

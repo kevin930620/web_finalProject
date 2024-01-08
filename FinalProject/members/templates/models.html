@@ -1,28 +1,34 @@
-
-
 {% extends "master.html" %}
 {% load static %}
 
 {% block title %}
-  My Tennis Club
+Laptop
 {% endblock %}
 
 
 {% block content %}
+<section>
+    <form action=""></form>
+</section>
+{% for x in myComputer %}
+<section>
+    <h2>{{x.ComputerName}}</h2>
+    <!-- <img src="dell-xps-13.jpg" alt="Dell XPS 13"> -->
+    <p>{{x.ComputerName}}</p>
+    <p>{{x.ComputerName}}</p>
+    <p>{{x.ComputerName}}</p>
+    <a href="imformation/{{x.id}}">Laptop details</a>
+</section>
 
-    {% for x in myComputer %}
-        <section>
-            <h2>{{x.ComputerName}}</h2>
-            <!-- <img src="dell-xps-13.jpg" alt="Dell XPS 13"> -->
-            <p>{{x.ComputerName}}</p>
-            <p>{{x.ComputerName}}</p>
-            <p>{{x.ComputerName}}</p>
-            <a href="imformation/{{x.id}}">Laptop details</a>
-        </section>     
-                    
-    {% endfor %}
+{% endfor %}
+<section>
+    <a href="{% url 'view_wishlist' %}">wish</a>
+    <a href="filter/">filter</a>
+    <a href="main/">main</a>
 
-  <!-- <!DOCTYPE html>  
+</section>
+
+<!-- <!DOCTYPE html>  
 
 <head>
     <link rel="stylesheet" href="/static/css/test.css">
@@ -56,12 +62,12 @@
             </div>
             <div class="right">
                 <p>asdasd</p>
-                <a href="filter/">filter</a>
+           
             </div>
 
         </div>
         <div>
-            <a href="{% url 'view_wishlist' %}">wish</a>
+    
         </div>
     </div>
 
