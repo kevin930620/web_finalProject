@@ -7,7 +7,7 @@ urlpatterns =[
     path('members/main/',views.main,name='main'),
     path('members/',views.members,name='members'),
     path('members/imformation/<int:id>',views.imformation,name='imformation'),
-    path('members/filter/',views.filter,name='filter'),
+    path('members/filter/',views.filter_view,name='filter'),
 
     path('wish/',views.wishlist,name='view_wishlist'),
     path('add_wish/',views.add_to_wishlist,name='add_to_wishlist'),

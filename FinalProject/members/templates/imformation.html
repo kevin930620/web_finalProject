@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html>
+{% extends "master.html" %}
+{% load static %}
 
-<head>
-    <style>
-        .test {
-            border: 5px solid black;
-        }
-    </style>
-</head>
+{% block title %}
+details
+{% endblock %}
 
-<body>
-    <div class="test">
-        <h1>{{ myComputer.ComputerName }} </h1>
-        <p>
-            Brand: {{ myComputer.Brand }}
-        </p>
-    </div>
+{% block content %}
 
-</body>
 
-</html>
+<section>
+    <h2 id="laptop-model">{{myComputer.ComputerName}}</h2>
+    <p id="laptop-description">CPU: {{myComputer.CPU}}</p>
+    <!-- <button class="cart-button" onclick="buyIt()">Buy It</button> -->
+</section>
+{% endblock %}

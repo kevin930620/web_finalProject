@@ -30,28 +30,28 @@ def main(request):
     return HttpResponse(template.render())
 
 
-def filter(request):
-    myComputer = Computer.objects.all().values()
-    theCPUType = CPUType.objects.all().values()
-    template = loader.get_template('filter.html')
-    context={
-        'myComputer':myComputer,
-        'theCpuType':theCPUType,
-    }
-    return HttpResponse(template.render(context,request))
+# def filter(request):
+#     myComputer = Computer.objects.all().values()
+#     theCPUType = CPUType.objects.all().values()
+#     template = loader.get_template('filter.html')
+#     context={
+#         'myComputer':myComputer,
+#         'theCpuType':theCPUType,
+#     }
+#     return HttpResponse(template.render(context,request))
 
-# def filter_view(request):
-#     if request.method == 'POST':
-#         form = FilterForm(request.POST)
-#         if form.is_valid():
-#             category_id = form.cleaned_data['category'].id
-#             # 根據選擇的分類進行過濾
-#             items = Item.objects.filter(category_id=category_id)
-#             # 其他篩選邏輯...
-#     else:
-#         form = FilterForm()
+def filter_view(request):
+    if request.method == 'POST':
+        form = FilterForm(request.POST)
+        if form.is_valid():
+            category_id = form.cleaned_data['Brand'].id
+            # 根據選擇的分類進行過濾
+            items = Computer.objects.filter(category_id=category_id)
+            # 其他篩選邏輯...
+    else:
+        form = FilterForm()
 
-#     return render(request, 'your_template.html', {'form': form})
+    return render(request, 'filter.html', {'form': form})
 
 def Item_List(request):
     # 
