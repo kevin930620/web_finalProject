@@ -20,12 +20,11 @@
         </div>
 
         <div id="search-bar">
-            <form method="POST">
-                <input type="text">
-                <button>Search</button>
+            <form method="POST" action="{% url 'members' %}">
+                {% csrf_token %}
+                <input type="text" name="search_text">
+                <input type="submit" >
             </form>
-
-
         </div>
     </header>
 

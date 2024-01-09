@@ -11,11 +11,21 @@ from django.contrib.auth import authenticate
 from .form import FilterForm,LoginForm,add_wishForm,SignUpForm
 
 def members(request):
+
+    if request.method == 'POST':
+        search_text = request.POST.get('search_text') 
+        print(search_text)
+        if search_text:
+            print('ashdkj')
+            search_text = request.POST.get('search_text')
+            computer = Computer.objects.filter(ComputerName__icontains=search_text)
+            return render(request,'models.html',{'Mycomputer':computer})
     myComputer = Computer.objects.all().values()
     template = loader.get_template('models.html')
     context = {
         'myComputer' : myComputer,
     }
+    
     # print(context)
     return HttpResponse(template.render(context,request))
 
@@ -165,3 +175,13 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+def textSearch(request):
+    if request.method == 'POST':
+        print('ashdkj')
+        search_text = request.POST.get('search_text')
+        computer = Computer.objects.filter(ComputerName__icontains=search_text)
+        return render(request,'models.html',{'Mycomputer':computer})
+    print('assdasd  ')
+    return redirect(members)

@@ -29,6 +29,8 @@ urlpatterns =[
     path('logout/',views.logout,name='logout'),
     path('signup/', views.signup, name='signup'),
     path('save_wishlist/', views.save_wishlist, name='save_wishlist'),
+
+    path('members/', views.textSearch, name='textSearch'),
     
 ]
 
