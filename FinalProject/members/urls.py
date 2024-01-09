@@ -17,9 +17,9 @@ urlpatterns =[
     path('members/main/',views.main,name='main'),
     path('members/',views.members,name='members'),
     path('members/imformation/<int:id>',views.imformation,name='imformation'),
-    path('members/filter/',views.filter_view,name='filter'),
+    # path('members/filter/',views,name='filter'),
 
-    path('members/wish/',views.wishlist,name='view_wishlist'),
+    path('members/wish/',views.view_wishlist ,name='view_wishlist'),
     path('add_wish/',views.add_to_wishlist,name='add_to_wishlist'),
     
     # path('homepage/',views.TEST,name='test'),

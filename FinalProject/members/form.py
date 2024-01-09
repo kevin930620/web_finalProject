@@ -1,5 +1,5 @@
 from django import forms
-from .models import Computer,CPUType
+from .models import Computer,CPUType,wishlist
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=20)
     password = forms.CharField(max_length=20,widget=forms.PasswordInput)
@@ -10,3 +10,23 @@ class FilterForm(forms.Form):
         queryset=CPUType.objects.all(),
         widget= forms.CheckboxSelectMultiple
     )
+
+class add_wishForm(forms.Form):
+    class Meta:
+        computer =forms.ModelChoiceField(queryset=Computer.objects.all() )
+        fields ='__all__' 
+
+
+class hopeForm(forms.ModelForm):
+    class Meta:
+        model = wishlist
+        fields =['user','computer']
+
+        widget={
+            'user':forms.Select(attrs={'readonly': 'readonly'}),
+            'computer':forms.Select()
+        } 
+        labels = {
+            'user':'使用者',
+            'computer':'電腦'
+        }

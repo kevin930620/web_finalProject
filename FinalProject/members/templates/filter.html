@@ -8,35 +8,7 @@
 </head>
 
 <body>
-    <!-- <form action="">
-        {% for x in theCpuType %}
-        <input type="checkbox" id="x.id" value="{{ x.id }}">
-        <label for="x.id">{{ x.name }}</label>
-        {% endfor %}
-    </form> -->
-<!--  -->
-    <!-- your_template.html -->
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">篩選</button>
-    </form>
 
-
-    <ul>
-        {% for x in computer %}
-        <li>{{ x.name }}</li>
-        {% endfor %}
-    </ul>
-
-<!--  -->
-    <!-- <ul>
-        {% for y in myComputer %}
-        <li>
-            <a href="/members/imformation/{{y.id}}">{{y.ComputerName}}</a>
-        </li>
-        {% endfor %}
-    </ul> -->
 
     <a href="/members">front pages</a>
 </body>
