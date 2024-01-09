@@ -13,7 +13,7 @@ class FilterForm(forms.Form):
 
 class add_wishForm(forms.Form):
     class Meta:
-        computer =forms.ModelChoiceField(queryset=Computer.objects.all() )
+        computer =forms.ModelChoiceField(queryset=Computer.objects.all())
         fields ='__all__' 
 
 

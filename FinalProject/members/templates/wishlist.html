@@ -1,23 +1,31 @@
-<!DOCTYPE html>
-<html>
+{% extends "master.html" %}
+{% load static %}
 
-<head>
-    <title>Wishlist</title>
-</head>
+{% block title %}
+Add to wishlist
+{% endblock %}
+
+{% block content %}
+<style>
+    body div {
+        text-align: center;
+    }
+</style>
 
 <body>
-    {% if request.user.is_authenticated %}
-    <h1>My Wishlist</h1>
-    <ul>
-        {% for item in wishlist_items %}
-        <li>{{ item.user }} - {{ item.computer }}
+    <div>
+        {% if request.user.is_authenticated %}
+        <h1>My Wishlist</h1>
+        <ul>
+            {% for item in wishlist_items %}
+            <li>{{ item.user }} {{ item.computer.ComputerName }} ${{ item.computer.Price }}
 
-        </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'add_to_wishlist' %}">Add Item</a>
-    {% endif %}
-    <!-- <a href="{% url 'login' %}"></a> -->
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_to_wishlist' %}">Add Item</a>
+        {% endif %}
+    </div>
 </body>
-
-</html>
+<!-- <a href="{% url 'login' %}"></a> -->
+{% endblock %}

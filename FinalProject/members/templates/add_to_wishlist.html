@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html>
+{% extends "master.html" %}
+{% load static %}
 
-<head>
-    <title>Add to Wishlist</title>
-</head>
+{% block title %}
+Add to wishlist
+{% endblock %}
 
-<body>
-    <h1>Add Item to Wishlist</h1>
-    <form method="post">
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/login.css' %}">
+
+
+    
+    <form method="post" action = "{% url 'save_wishlist' %}">
         {% csrf_token %}
         <label for="id_computer">computer Name:</label><br>
-        {{ form.computer }}
-        <input type="text" id="item_name" name="item_name"><br>
-        <input type="submit" value="Add">
+        <select name="selected_computer">
+            {% for computer in computers %}
+                <option value="{{ computer.id }}">{{ computer.ComputerName }}</option>
+            {% endfor %}
+        </select>
+        
+        <input type="submit" value="Save">
     </form>
-</body>
-
-</html>
+    {% endblock %}

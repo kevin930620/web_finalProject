@@ -28,6 +28,7 @@ urlpatterns =[
     # path('login/',CustomLoginView.as_view(), {'template_name': 'login.html'}, name='login'),
     path('logout/',views.logout,name='logout'),
     path('signup/', views.signup, name='signup'),
+    path('save_wishlist/', views.save_wishlist, name='save_wishlist'),
     
 ]
 

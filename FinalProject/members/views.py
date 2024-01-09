@@ -56,17 +56,38 @@ def getMember(request):
         return render(request, 'booking_error.html', None)
 
 def add_to_wishlist(request):
-    if request.method == 'POST':
-        form = add_wishForm(request.POST)
-        if form.is_valid:
-           form.save() 
+    computers = Computer.objects.all()
+    return render(request,'add_to_wishlist.html',{'computers':computers})
+    
+    
+    # if request.method == 'POST':
+    #     form = add_wishForm(request.POST)
+    #     print(form)
+    #     if form.is_valid:
+    #        form.save() 
         
-        item_name = request.POST.get('item_name')
-        wishlist.objects.create(user=request.user,computer = item_name)
-        return redirect('view_wishlist')
-    return render(request, 'add_to_wishlist.html')
+    #     item_name = request.POST.get('item_name')
+    #     wishlist.objects.create(user=request.user,computer = item_name)
+    #     return redirect('view_wishlist')
+    # return render(request, 'add_to_wishlist.html')
 
-
+def save_wishlist(request):
+    if request.method == 'POST':
+        username = request.user
+        selected_computer_name = request.POST.get('selected_computer')
+        if selected_computer_name:
+            try:
+                selected_computer = Computer.objects.get(pk=selected_computer_name)# selected_computer_name =   # 從 POST 請求中獲取選擇的電腦名稱
+                wishlist_item = wishlist(user = username, computer=selected_computer)  # 創建一個 Wishlist 物件
+                wishlist_item.save()  # 儲存到 Wishlist 中，假設 Wishlist 有一個 'computer_name' 欄位
+                # 可以根據需要重定向到其他頁面
+                return redirect('view_wishlist')  # 重定向到成功頁面，需要在urls.py中設置'success_page'
+            except Computer.DoesNotExist:
+                return HttpResponse("None")
+        else:
+            return HttpResponse("asd")
+    # 如果不是 POST 請求，返回原始頁面或錯誤頁面
+    return redirect('view_wishlist')
 
 
 def TEST(request):
