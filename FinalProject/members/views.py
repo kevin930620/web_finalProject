@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from django.contrib.auth import authenticate
 
-from .form import FilterForm,LoginForm,add_wishForm
+from .form import FilterForm,LoginForm,add_wishForm,SignUpForm
 
 def members(request):
     myComputer = Computer.objects.all().values()
@@ -128,3 +128,15 @@ def logout(request):
     print('zkxjc')
     return HttpResponse(main_html.render(context,request))
     
+
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('signup_success')  # 跳转到注册成功页面
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
