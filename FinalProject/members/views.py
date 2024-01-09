@@ -37,12 +37,16 @@ def view_wishlist(request):
     
     wish = wishlist.objects.filter(user=request.user)
     print (f'All bookings by {request.user}:')
+    total_price = 0
     for b in wish:
+        total_price+=b.computer.Price
         print (b)
     member = request.user    
-    
+    # total_price = sum(wishlist.computer. for computer in )
     context = {'member': member,
-               'wishlist_items': wish}
+               'wishlist_items': wish,
+               'totalprice':total_price,
+               }
     return render(request, 'wishlist.html', context)
 
 def getMember(request):
